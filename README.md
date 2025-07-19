@@ -1,6 +1,6 @@
 # RAG Pipeline Overview
 
-A retrieval augmented generation pipeline for an offline LLM to inject further context into prompts, with a simple HTML frontend to interact with the pipeline.
+A Retrieval Augmented Generation (RAG) pipeline for an offline LLM to inject further context into prompts, with a simple HTML frontend to interact with the pipeline.
 
 ## How To Run
 
