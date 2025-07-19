@@ -13,9 +13,13 @@ A retrieval augmented generation pipeline for an offline LLM to inject further c
 
 ## How It Works
 
-The documents are chunked by a text splitter. Each chunk is stored in a list, and a copy of the chunk is vectorized using a sentence transformer, and stored in a vector database. The vector database allows for effective similarity search which is identical to a nearest neighbour search based on the coordinates of the vectors. 
+- The documents are chunked by a text splitter.
+- Each chunk is stored in a list, and a copy of the chunk is vectorized using a sentence transformer, and stored in a vector database.
+  - The vector database allows for effective similarity search which is identical to a nearest neighbour search based on the coordinates of the vectors.
 
-When a prompt is passed into the pipeline, it is converted into a vector by the same sentence transformer model that encoded the data. Relevant vectors are retrieved from the database using a nearest neighbour search, and their corresponding indices give the text chunks which were stored in the list. The relevant context/chunks are then injected into the final prompt which is passed to the LLM to give a more educated answer.
+- When a prompt is passed into the pipeline, it is converted into a vector by the same sentence transformer model that encoded the data.
+- Relevant vectors are retrieved from the database using a nearest neighbour search, and their corresponding indices give the text chunks which were stored in the list.
+- The relevant context/chunks are then injected into the final prompt which is passed to the LLM to give a more educated answer.
 
 ## Example Responses
 
@@ -29,7 +33,9 @@ Given these documents as context, `dct(G,k)` is the expected capture time of a c
 ### Prompt
 When is dct(G, k) < ∞
 
-### Response With RAG
+### Responses
+
+```With RAG
 Based on the context provided, we can infer that dct(G, k) is finite if and only if the graph G is a tree. This follows from the fact that in a tree, the cops can always find each other, which allows them to capture the robber in finite time.
 
 To see why this is the case, recall that the capture time is defined as the expected number of rounds until the cops capture the robber. In a tree, the cops can move in any direction, and they will eventually meet each other if they are not already connected by an edge. This means that there exists some k such that the cops can capture the robber in at most k rounds, since they can always find each other.
@@ -37,8 +43,9 @@ To see why this is the case, recall that the capture time is defined as the expe
 In contrast, if G is not a tree, then the cops may get lost, and it may take them a long time to find each other. In this case, dct(G, k) may be infinite, since there exists no upper bound on the number of rounds it takes for the cops to capture the robber.
 
 Therefore, we can conclude that dct(G, k) is finite if and only if G is a tree.
+```
 
-### Response Without RAG
+```Without RAG
 DCT (Discrete Cosine Transform) of a discrete-time signal x[n] is defined as:
 
 X[k] = Σx[n] cos(πnk)
@@ -56,7 +63,7 @@ Mathematically, this can be expressed as:
 dct(G(k), k) < ∞ ⇔ G(k) → 0 as |k| → ∞
 
 where G(k) is the DCT kernel.
-
+```
 
 ## Future Improvement
 
