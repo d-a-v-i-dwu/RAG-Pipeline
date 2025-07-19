@@ -1,0 +1,31 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+        <meta charset="UTF-8">
+        <title>Brewing Station</title>
+    </head>
+
+    <body>
+        <h1 id="subheader">Ask Away</h1>
+        <textarea id="input" placeholder="What do you seek?"></textarea><br>
+        <button id="submitButton" onclick="sendPrompt()">Quiz</button>
+        <h3>Response:</h3>
+        <pre id="response"></pre>
+
+        <script>
+            async function sendPrompt() {
+                const prompt = document.getElementById("input").value;
+                document.getElementById("submitButton").textContent = "Quizzing...";
+                const res = await fetch('/query', {
+                    method: "POST",
+                    headers: {"Content-Type": "application/json"},
+                    body: JSON.stringify({prompt})
+                });
+                const data = await res.json();
+                document.getElementById("response").textContent = data.response || data.error;
+                document.getElementById("submitButton").textContent = "Quiz";
+            }
+        </script>
+
+    </body>
+</html>
