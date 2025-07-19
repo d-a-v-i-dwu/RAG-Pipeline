@@ -9,7 +9,7 @@ A retrieval augmented generation pipeline for an offline LLM to inject further c
 3. Add the data/documents which are to be used as added context in `/documents` as PDFs.
 4. Install dependencies with `pip install -r requirements.txt`
 5. Run the app with `python app.py`
-6. Follow the link in terminal to the website
+6. Follow the link in terminal to the localhost
 
 ## How It Works
 
